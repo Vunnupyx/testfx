@@ -1,19 +1,14 @@
-import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class FileTable {
     private String name;
-    private long size;
-    private String dateChange;
+    private String size;
+    private Date dateChange;
 
-    public FileTable(String name, long size, String dateChange) {
+    public FileTable(String name, String size, Date dateChange) {
         this.name = name;
         this.size = size;
-        this.dateChange = dateChange;
-    }
-
-    public FileTable(String name, String dateChange) {
-        this.name = name;
         this.dateChange = dateChange;
     }
 
@@ -26,19 +21,27 @@ public class FileTable {
         this.name = name;
     }
 
-    public long getSize() {
-        return size;
+
+    public String getSize() {
+        if (size.equals("0")) {
+            return "";
+        } else {
+            return size;
+        }
     }
 
-    public void setSize(long size) {
+    public void setSize(String size) {
         this.size = size;
     }
 
+
     public String getDateChange() {
-        return dateChange;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm:ss");
+
+        return dateFormat.format(dateChange);
     }
 
-    public void setDateChange(String dateChange) {
+    public void setDateChange(Date dateChange) {
         this.dateChange = dateChange;
     }
 }
